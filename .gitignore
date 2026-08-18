@@ -12,3 +12,6 @@ npm-debug.log*
 .vscode/
 .idea/
 *.swp
+
+# runtime worktree workspaces (plugin default: <project>/.dsh/workspaces/)
+.dsh/

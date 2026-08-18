@@ -124,7 +124,7 @@ const viewState = {
 
 // fetch mock returning the worktree topology
 const treeFixture = {
-  root: "/Users/heathhe/orca/workspaces",
+  root: "/Users/you/orca/workspaces",
   repos: [
     {
       name: "myapp",

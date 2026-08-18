@@ -29,6 +29,10 @@ npm test        # 运行 client-smoke + render 测试
 
 `lib/client.js` 应**提交进仓库**（它是实际发布的客户端产物）；修改客户端逻辑后需重新构建。
 
+> 构建与测试依赖本机的 DSH CLI 环境：`lib/build.mjs` 从 `~/.dsh/profiles/web/` 或
+> `~/.npm/_npx/*/` 定位官方 `@deepseek-ai/dsh-client-ui-workspace` 编译产物，
+> 两个测试文件也从此处的依赖树解析 `react` / `react-dom`。请先安装 DSH CLI 及其 `web` profile。
+
 ## 测试
 
 ```bash
