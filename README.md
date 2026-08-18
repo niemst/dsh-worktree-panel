@@ -1,99 +1,66 @@
 # dsh-worktree-panel
 
-[![npm version](https://img.shields.io/npm/v/dsh-worktree-panel)](https://www.npmjs.com/package/dsh-worktree-panel)
-[![license](https://img.shields.io/npm/l/dsh-worktree-panel)](./LICENSE)
+<p align="center">
+  <a href="https://www.npmjs.com/package/dsh-worktree-panel"><img alt="npm version" src="https://img.shields.io/npm/v/dsh-worktree-panel?label=npm&color=blue"></a>
+  <a href="https://www.npmjs.com/package/dsh-worktree-panel"><img alt="monthly downloads" src="https://img.shields.io/npm/dm/dsh-worktree-panel?label=%E6%9C%88%E4%B8%8B%E8%BD%BD&color=brightgreen"></a>
+  <a href="https://github.com/HeathHe/dsh-worktree-panel"><img alt="stars" src="https://img.shields.io/github/stars/HeathHe/dsh-worktree-panel?style=social"></a>
+  <a href="https://github.com/HeathHe/dsh-worktree-panel/blob/main/LICENSE"><img alt="license" src="https://img.shields.io/github/license/HeathHe/dsh-worktree-panel?color=orange"></a>
+  <img alt="platform" src="https://img.shields.io/badge/platform-DeepSeek%20Harness%20Web-8A2BE2">
+</p>
 
-DSH Web GUI 的 git worktree 分支管理面板：在官方工作区/会话侧边栏之上，为 git 项目增加 **项目 → 主工作树 / 分支 worktree → 会话** 的维度，同时保留官方列表的全部原有交互。
+为 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) Web 界面增加 git worktree 维度的分支管理面板：在官方工作区/会话侧边栏之上，展示 **项目 → 主工作树 / 分支 worktree → 会话**，并保留官方列表的全部原有交互。
 
-A git worktree / branch management panel for the DSH Web GUI. On top of the official workspace/session sidebar, it adds a **project → main working tree / branch worktree → session** dimension while preserving every interaction of the official list.
+A git worktree / branch panel for the [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) Web GUI: on top of the official workspace/session sidebar it adds a **project → main working tree / branch worktree → session** dimension while preserving every interaction of the official list.
 
 ---
 
-## 安装 / Installation
+## 使用 / Usage
 
-### 从 npm 安装（推荐）/ From npm (recommended)
+### 安装 / Install
 
 ```sh
 dsh plugin --profile web add dsh-worktree-panel
 ```
 
+装完重启 `dsh web`，工作区侧边栏即出现 worktree 维度。/ Restart `dsh web` afterwards; the worktree dimension appears in the sidebar.
+
 安装指定版本 / Install a specific version:
 
 ```sh
-dsh plugin --profile web add dsh-worktree-panel@0.1.0
-```
-
-装完**重启 `dsh web`** 生效。/ Restart `dsh web` afterwards for it to take effect.
-
-### 从源码链接（开发）/ Link from source (development)
-
-```sh
-dsh plugin --profile web add link:/绝对路径/到/dsh-worktree-panel
-# 例如 / e.g.
-dsh plugin --profile web add link:$HOME/Desktop/HeathHe/myself/dsh-worktree-panel
+dsh plugin --profile web add dsh-worktree-panel@0.1.1
 ```
 
 ### 升级 / Upgrade
 
 ```sh
-dsh plugin --profile web add dsh-worktree-panel@<新版本>
+dsh plugin --profile web add dsh-worktree-panel@<新版本 / new version>
 # 然后重启 dsh web / then restart dsh web
+```
+
+### 源码开发 / Development
+
+```sh
+dsh plugin --profile web add link:/绝对路径/到/dsh-worktree-panel
 ```
 
 ---
 
-> 本插件按 DSH 插件包组织（`dsh` 字段 + `cordis.patch.yml`）。`cordis.patch.yml` 会禁用官方 `ui-workspace` 行并插入本插件，因此安装后工作区/会话侧边栏由本插件接管，官方原交互全部保留。
->
-> This plugin is organized as a DSH plugin package (`dsh` field + `cordis.patch.yml`). `cordis.patch.yml` disables the official `ui-workspace` row and injects this plugin, so after installation the workspace/session sidebar is taken over by this plugin while every official interaction is preserved.
-
 ## 功能 / Features
 
-- 项目组内展示**主工作树**（当前分支 + 干净/有改动状态）与各**分支 worktree**
-- 在 worktree 内开新会话、删除 worktree、切换主工作树分支
-- 底部「＋ 分支 → 创建 worktree」为未建 worktree 的分支一键创建（可选新建分支）
-- worktree 落盘位置可配置：默认 **项目内 `.dsh/workspaces/`**，或改为全局目录
-- 更改落盘位置时自动检测并**批量迁移**已有 worktree（跳过有未提交改动 / 有活跃会话的）
-- 非 git 工作区保持官方原样，不显示任何 worktree UI
+- **主工作树 + 分支 worktree** — 项目组内展示主工作树（当前分支 + 干净/有改动状态）与各分支 worktree
+- **会话管理** — 在 worktree 内开新会话、删除 worktree、切换主工作树分支
+- **一键创建** — 底部「＋ 分支 → 创建 worktree」为未建 worktree 的分支一键创建（可选新建分支）
+- **落盘位置可配置** — 默认项目内 `.dsh/workspaces/`，或改为全局目录；更改时自动检测并批量迁移已有 worktree（跳过有未提交改动 / 活跃会话的）
+- **零侵入** — 非 git 工作区保持官方原样，不显示任何 worktree UI
 
-- Show the **main working tree** (current branch + clean/dirty status) and each **branch worktree** within a project group
-- Open a new session inside a worktree, delete a worktree, and switch the main working tree's branch
-- The bottom "＋ branch → create worktree" button one-click creates a worktree for any branch without one (optionally creating a new branch)
-- Configurable worktree location: default to **`.dsh/workspaces/` inside the project**, or switch to a global directory
-- Changing the location auto-detects and **bulk-migrates** existing worktrees (skipping those with uncommitted changes / active sessions)
-- Non-git workspaces stay exactly as the official UI — no worktree UI is shown
+- **Main working tree + branch worktrees** — shows the main working tree (current branch + clean/dirty status) and each branch worktree within a project group
+- **Session management** — open a new session inside a worktree, delete a worktree, switch the main working tree's branch
+- **One-click create** — the bottom "＋ branch → create worktree" button creates a worktree for any branch without one (optionally a new branch)
+- **Configurable location** — default `.dsh/workspaces/` inside the project or a global directory; changing it auto-detects and bulk-migrates existing worktrees (skipping those with uncommitted changes / active sessions)
+- **Zero intrusion** — non-git workspaces stay exactly as the official UI, no worktree UI is shown
 
-## 构建（开发）/ Build (Development)
+---
 
-`lib/client.js` 是**生成物**：`lib/build.mjs` 会定位官方 `@deepseek-ai/dsh-client-ui-workspace` 的编译产物，patch 出带 worktree 维度的客户端半身。
+## 许可 / License
 
-`lib/client.js` is a **build artifact**: `lib/build.mjs` locates the official `@deepseek-ai/dsh-client-ui-workspace` bundle and patches it into a client half with the worktree dimension.
-
-```bash
-npm run build   # 等价于 node lib/build.mjs，重新生成 lib/client.js
-                # Equivalent to node lib/build.mjs; regenerates lib/client.js
-npm test        # 运行 client-smoke + render 测试
-                # Runs the client-smoke + render tests
-```
-
-`lib/client.js` 应**提交进仓库**（它是实际发布的客户端产物）；修改客户端逻辑后需重新构建。
-
-`lib/client.js` should be **committed to the repository** (it is the actual published client artifact); rebuild it after modifying client logic.
-
-> 构建与测试依赖本机的 DSH CLI 环境：`lib/build.mjs` 从 `~/.dsh/profiles/web/` 或 `~/.npm/_npx/*/` 定位官方 `@deepseek-ai/dsh-client-ui-workspace` 编译产物，两个测试文件也从此处的依赖树解析 `react` / `react-dom`。请先安装 DSH CLI 及其 `web` profile。
->
-> Building and testing depend on a local DSH CLI environment: `lib/build.mjs` resolves the official `@deepseek-ai/dsh-client-ui-workspace` bundle from `~/.dsh/profiles/web/` or `~/.npm/_npx/*/`, and both test files resolve `react` / `react-dom` from that dependency tree. Install the DSH CLI and its `web` profile first.
-
-## 测试 / Tests
-
-```bash
-npm test
-```
-
-- `test/client-smoke.mjs` — 在 Node 里执行 patch 后的 bundle，校验 apply 与 slot 注册 / Executes the patched bundle in Node to verify `apply` and slot registration
-- `test/render-test.mjs` — 用 `react-dom/server` 挂载 WorkspaceBrowser，校验嵌套 worktree 渲染 / Mounts WorkspaceBrowser with `react-dom/server` to verify nested worktree rendering
-
-## 许可证 / License
-
-MIT。`lib/client.js` 衍生自 `@deepseek-ai/dsh-client-ui-workspace`（MIT，Copyright (c) 2026 DeepSeek），详见 `NOTICE` 与 `LICENSE`。
-
-MIT. `lib/client.js` is derived from `@deepseek-ai/dsh-client-ui-workspace` (MIT, Copyright (c) 2026 DeepSeek); see `NOTICE` and `LICENSE` for details.
+MIT · `lib/client.js` 衍生自 `@deepseek-ai/dsh-client-ui-workspace`，详见 `NOTICE` / `LICENSE`。/ MIT · `lib/client.js` is derived from `@deepseek-ai/dsh-client-ui-workspace`; see `NOTICE` / `LICENSE`.
